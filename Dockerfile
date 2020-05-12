@@ -1,10 +1,6 @@
-
-FROM  ubuntu:16.04
-
-RUN apt-get update && apt-get install -y python python-pip
-
-RUN pip install flask
-
-COPY app.py /opt/
-
-ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0 --port=8080
+FROM adoptopenjdk/openjdk11:jdk-11.0.2.9-slim
+WORKDIR /opt
+ENV PORT 8080
+EXPOSE 8080
+COPY target/*.jar /opt/app.jar
+ENTRYPOINT exec java $JAVA_OPTS -jar app.jar
