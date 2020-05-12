@@ -1,4 +1,6 @@
-FROM adoptopenjdk/openjdk11:jdk-11.0.2.9-slim
-ADD app.jar /opt/app/
-EXPOSE 8080
-ENTRYPOINT ["/lib/runtime/bin/java", "-jar", "/opt/app/app.jar"]
+
+FROM alpine:3.2
+
+RUN apk --update add openjdk7-jre
+
+CMD ["/usr/bin/java", "-version"]
