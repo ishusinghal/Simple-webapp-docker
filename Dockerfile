@@ -1,6 +1,4 @@
 FROM adoptopenjdk/openjdk11:jdk-11.0.2.9-slim
-WORKDIR /opt
-ENV PORT 8080
+ADD app.jar /opt/app/
 EXPOSE 8080
-COPY target/*.jar /opt/app.jar
-ENTRYPOINT exec java $JAVA_OPTS -jar app.jar
+ENTRYPOINT ["/lib/runtime/bin/java", "-jar", "/opt/app/app.jar"]
